@@ -1,0 +1,29 @@
+h1 {
+    margin: 0;
+    color: #B7E3CC;
+    text-align: center;
+}
+
+a {
+    /* align-content: center; */
+    /* display: block; */
+    margin: 0 auto;
+}
+
+html {
+    font-size: 20px;
+    font-family: 'Kufam', cursive;
+    background-color: #5DA399;
+}
+
+p {
+    text-align: center;
+}
+
+img {
+    display: block;
+    width: 400px;
+    height: 400px;
+    margin: 0 auto;
+}
+
