@@ -3,47 +3,78 @@
 
 <head>
   <meta charset="utf-8">
-  <title>Checkable items examples</title>
+  <title>Todolist Cage</title>
+  <link href="styles/style.css" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 </head>
 
 <body>
-  <table>
-    <tr>
-      <td></td>
-      <td>Knocky</td>
-      <td>Flor</td>
-      <td>Ella</td>
-      <td>Juan</td>
-    </tr>
-    <tr>
-      <td>Breed</td>
-      <td>Jack Russell</td>
-      <td>Poodle</td>
-      <td>Streetdog</td>
-      <td>Cocker Spaniel</td>
-    </tr>
-    <tr>
-      <td>Age</td>
-      <td>16</td>
-      <td>9</td>
-      <td>10</td>
-      <td>5</td>
-    </tr>
-    <tr>
-      <td>Owner</td>
-      <td>Mother-in-law</td>
-      <td>Me</td>
-      <td>Me</td>
-      <td>Sister-in-law</td>
-    </tr>
-    <tr>
-      <td>Eating Habits</td>
-      <td>Eats everyone's leftovers</td>
-      <td>Nibbles at food</td>
-      <td>Hearty eater</td>
-      <td>Will eat till he explodes</td>
-    </tr>
-  </table>
+
+
+  <div id="centerColumn">
+
+    <h1> TODO CAGE </h1>
+
+    <form>
+
+      <fieldset>
+        <legend>Search</legend>
+        <hr>
+        <div id="searchBox">
+          <span>
+            <input type="text" name="search-box" placeholder="Search">
+          </span>
+          <span>
+            <button type="button">Search</button>
+          </span>
+        </div>
+      </fieldset>
+
+      <fieldset>
+        <legend>Add Task</legend>
+        <hr>
+        <div id="addTask">
+          <span>
+            <input type="text" name="add-task" placeholder="Add your task here.">
+          </span>
+          <span>
+            <button type="button">Add</button>
+          </span>
+        </div>
+      </fieldset>
+
+      <fieldset>
+        <legend>Todo</legend>
+        <hr>
+      </fieldset>
+
+      <fieldset>
+        <legend>Completed</legend>
+        <hr>
+      </fieldset>
+    </form>
+
+
+    <div id="taskContainer">
+      <div id="todoTaskCard">
+
+      </div>
+      <div id="completedTaskCard">
+
+      </div>
+    </div>
+
+  </div>
+
+  <div id="leftColumn">
+
+
+  </div>
+
+  <div id="rightColumn">
+
+  </div>
+
 </body>
 
 </html>
