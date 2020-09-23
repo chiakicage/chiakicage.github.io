@@ -184,13 +184,13 @@ body {
   top: 0;
   bottom: 0;
   margin: auto 0;
-  border: none; /* Mobile Safari */
-  -webkit-appearance: none;
-  appearance: none;
+  border: none;
+  /* -webkit-appearance: none; */
+  /* appearance: none; */
 }
 
 .todo-list li .toggle {
-  opacity: 0;
+  /* opacity: 0; */
 }
 
 .todo-list li .toggle + label {
@@ -240,7 +240,7 @@ body {
 }
 
 .todo-list li .destroy:after {
-  content: "×";
+  content: "+";
 }
 
 .todo-list li:hover .destroy {
@@ -355,10 +355,10 @@ html .clear-completed:active {
 	Can't use it globally since it destroys checkboxes in Firefox
 */
 @media screen and (-webkit-min-device-pixel-ratio: 0) {
-  .toggle-all,
+  /* .toggle-all,
   .todo-list li .toggle {
     background: none;
-  }
+  }*/
 
   .todo-list li .toggle {
     height: 40px;

@@ -14,33 +14,38 @@ h1 {
   /* text-align: center; */
 }
 
-#searchBox,
+/* #searchBox, */
+#todoTask,
 #addTask {
-  margin-right: auto;
-  margin-left: auto;
-  width: 500px;
+  margin: 0 auto;
+  width: 600px;
   /* text-align: center; */
 }
+
 
 button {
   height: 48px;
   width: 48px;
   padding: 0;
   margin: 0;
-  font: 14px "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 19px;
+  font-family: monospace;
   line-height: 0;
-  background: #f5f5f5;
-  color: #3d3b3ba1;
-  margin: 0 auto;
+  background: #6166683a;
+  color: #000000;
+  /* margin: 0 auto; */
   border: 1px solid;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  font-weight: 300;
+  text-align: center;
+  font-weight: 500;
+}
+button:focus {
+  border: 0px solid;
+
 }
 
 fieldset {
   width: 600px;
-  margin: 0 auto;
+  margin: 20px auto;
   border: 0;
 }
 
@@ -51,31 +56,49 @@ legend {
   font-weight: 600;
 }
 
-p {
-  text-align: center;
-}
-:focus {
-  /* border: 0; */
-  /* outline: 0; */
-}
-
-html {
-  /* margin: 0 auto; */
-}
-
-input {
+.task-item {
+  margin: 0;
   outline-style: none;
   border: 1px solid #ccc;
-  /* border-radius: 3px; */
-  padding: 13px 14px;
-  width: 370px;
-  height: 20px;
-  font-size: 14px;
-  /* font-weight: 700; */
+  padding: 13px 13px;
+  width: 572px;
+  height: 30px;
+  font-size: 20px;
   font-family: "Microsoft soft";
 }
 
-input:focus {
+label {
+  margin: 0 auto;
+}
+
+input.text-input {
+  outline-style: none;
+  border: 1px solid #ccc;
+  padding: 14px 14px;
+  width: 516px;
+  height: 20px;
+  font-size: 14px;
+  font-family: "Microsoft soft";
+}
+
+input.text-input:focus {
   box-shadow: 0 2px 4px 0 rgba(16, 206, 212, 0.74),
     0 25px 25px 0 rgba(223, 10, 10, 0.041);
 }
+
+/* input.check-box { */
+  /* text-align: center; */
+  /* width: 25px; */
+  /* position: absolute; */
+  /* top: 0; */
+  /* bottom: 0; */
+  /* margin: auto 0; */
+  /* border: none; */
+/* } */
+
+/* @media screen and (-webkit-min-device-pixel-ratio: 0) {
+  .check-box {
+    height: 25px;
+  }
+} */
+
