@@ -3,6 +3,7 @@
 <body>
   <script>
     var request = new XMLHttpRequest();
+    console.log(request);
     request.onreadystatechange = function () {
       if (request.readyState === 4) {
         if (request.status === 200) {
@@ -12,9 +13,9 @@
         }
       }
     }
-    request.open('GET', 'http://localhost:8000');
+    request.open('GET', 'http://localhost:8000/');
     request.send();
-    request.send();
+    console.log(request);
   </script>
 </body>
 
