@@ -31,11 +31,11 @@
       </fieldset> -->
 
     <fieldset>
-      <legend>Add Task</legend>
+      <legend>ADD ITEM</legend>
       <hr>
       <div id="addTask">
         <input class="text-input" id="taskinfo" type="text" name="add-task" placeholder="Add your task here."
-          @keyup.enter="addTodo">
+          onkeydown="enterAdd(event)">
         <button id="task-add" type="button" class="add">+</button>
 
       </div>
@@ -43,24 +43,27 @@
 
 
     <fieldset>
-      <legend>Task List</legend>
+      <legend>TODO</legend>
       <hr>
       <!-- <ul id="todoTask"> -->
-      <div id="todoTask">
-        <div class="task-item">
+      <div id="todoTask1">
+        <!-- <div class="task-item">
           <input id="task1" type="checkbox" class="check-box" style="zoom:180%;">
-          <input id="input1" type="text" class="taskmsg-on">
+          <input type="text" class="taskmsg-on">
           <img src="images/trash-can.svg" class="del">
-        </div>
+        </div> -->
       </div>
       <!-- </ul> -->
 
     </fieldset>
 
-    <!-- <fieldset>
-        <legend>Completed</legend>
-        <hr>
-      </fieldset> -->
+    <fieldset>
+      <legend>COMPLETED</legend>
+      <hr>
+      <div id="todoTask2">
+
+      </div>
+    </fieldset>
 
 
     <!-- </form> -->
@@ -73,10 +76,10 @@
   </div>
 
   <div id="rightColumn">
-
+    <!-- <p> test </p> -->
   </div>
 
-  <script src="scripts/main.js"></script>
+  <script src="scripts/main.js" defer></script>
 </body>
 
 </html>

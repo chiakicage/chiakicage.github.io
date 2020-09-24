@@ -189,9 +189,9 @@ body {
   /* appearance: none; */
 }
 
-.todo-list li .toggle {
+/* .todo-list li .toggle { */
   /* opacity: 0; */
-}
+/* } */
 
 .todo-list li .toggle + label {
   /*

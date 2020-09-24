@@ -9,12 +9,15 @@ h1 {
 }
 
 
-/* #searchBox, */
-#todoTask,
-#addTask {
+
+
+#centerColumn {
   margin: 0 auto;
   width: 600px;
-  /* text-align: center; */
+}
+
+#rightColumn {
+  margin: 0 0 0 900px;
 }
 
 
@@ -27,7 +30,7 @@ h1 {
   font-size: 19px;
   font-family: monospace;
   line-height: 0;
-  background: #6166683a;
+  background: #ffffff3a;
   color: #000000;
   /* margin: 0 auto; */
   border: 1px solid;
@@ -52,6 +55,7 @@ fieldset {
 
 
 legend {
+  /* padding: 0px 0px 0px 20px; */
   font-size: 30px;
   font-family: Consolas;
   font-weight: 600;
@@ -63,7 +67,7 @@ legend {
 input.text-input {
   outline-style: none; 
   border: 1px solid #ccc;
-  padding: 10px 10px;
+  padding: 10px 0px 10px 20px;
   width: 516px;
   height: 28px;
   font-size: 20px;
@@ -71,9 +75,8 @@ input.text-input {
   font-family: "Microsoft soft";
 }
 
-input.text-input:focus {
-  box-shadow: 0 2px 4px 0 rgba(16, 206, 212, 0.74),
-    0 25px 25px 0 rgba(223, 10, 10, 0.041);
+input.text-input:hover {
+  box-shadow: 0 2px 4px 0 rgba(16, 206, 212, 0.74);
 }
 
 
@@ -83,12 +86,17 @@ input.text-input:focus {
   margin: 3px 0;
   outline-style: none;
   border: 1px solid #ccc;
-  padding: 10px 10px 4px 10px;
-  width: 572px;
+  padding: 10px 0px 4px 10px;
+  width: 582px;
   height: 40px;
-  font-size: 20px;
+  font-size: 17px;
   font-family: "Microsoft soft";
 }
+
+.task-item:hover {
+  box-shadow: 0 2px 4px 0 rgba(16, 206, 212, 0.74);
+}
+
 
 
 input.taskmsg-off {
@@ -99,7 +107,7 @@ input.taskmsg-off {
 .taskmsg-on,
 .taskmsg-off {
   height: 35px;
-  width: 480px;
+  width: 475px;
   padding: 0;
   font-size: 30px;
   border: 0;
@@ -110,10 +118,22 @@ input.taskmsg-off:focus {
   outline-style: none;
 }
 
+.edit {
+  margin: 0;
+  padding: 0;
+  width: 30px;
+  height: 25px;
+}
+
 .del {
   margin: 0;
   padding: 0;
   width: 30px;
   height: 30px;
+}
+
+.edit:hover,
+.del:hover {
+  opacity: 50%;
 }
 
