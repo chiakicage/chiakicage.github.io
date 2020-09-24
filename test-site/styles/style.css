@@ -8,11 +8,6 @@ h1 {
   text-align: center;
 }
 
-#centerColumn {
-  /* margin: 0 auto; */
-  /* padding: 0 auto; */
-  /* text-align: center; */
-}
 
 /* #searchBox, */
 #todoTask,
@@ -23,7 +18,8 @@ h1 {
 }
 
 
-button {
+.add {
+  border-radius: 25px;
   height: 48px;
   width: 48px;
   padding: 0;
@@ -38,10 +34,15 @@ button {
   text-align: center;
   font-weight: 500;
 }
-button:focus {
-  border: 0px solid;
 
+.add:focus {
+  outline-style: none;
+  /* opacity: 50%; */
 }
+.add:hover {
+  opacity: 50%;
+}
+
 
 fieldset {
   width: 600px;
@@ -56,28 +57,17 @@ legend {
   font-weight: 600;
 }
 
-.task-item {
-  margin: 0;
-  outline-style: none;
-  border: 1px solid #ccc;
-  padding: 13px 13px;
-  width: 572px;
-  height: 30px;
-  font-size: 20px;
-  font-family: "Microsoft soft";
-}
 
-label {
-  margin: 0 auto;
-}
+
 
 input.text-input {
-  outline-style: none;
+  outline-style: none; 
   border: 1px solid #ccc;
-  padding: 14px 14px;
+  padding: 10px 10px;
   width: 516px;
-  height: 20px;
-  font-size: 14px;
+  height: 28px;
+  font-size: 20px;
+  border-radius: 25px;
   font-family: "Microsoft soft";
 }
 
@@ -86,19 +76,44 @@ input.text-input:focus {
     0 25px 25px 0 rgba(223, 10, 10, 0.041);
 }
 
-/* input.check-box { */
-  /* text-align: center; */
-  /* width: 25px; */
-  /* position: absolute; */
-  /* top: 0; */
-  /* bottom: 0; */
-  /* margin: auto 0; */
-  /* border: none; */
-/* } */
 
-/* @media screen and (-webkit-min-device-pixel-ratio: 0) {
-  .check-box {
-    height: 25px;
-  }
-} */
+.task-item {
+  border-radius: 25px;
+
+  margin: 3px 0;
+  outline-style: none;
+  border: 1px solid #ccc;
+  padding: 10px 10px 4px 10px;
+  width: 572px;
+  height: 40px;
+  font-size: 20px;
+  font-family: "Microsoft soft";
+}
+
+
+input.taskmsg-off {
+  color: #4d4f5098;
+  text-decoration: line-through;
+}
+
+.taskmsg-on,
+.taskmsg-off {
+  height: 35px;
+  width: 480px;
+  padding: 0;
+  font-size: 30px;
+  border: 0;
+  margin: 0;
+}
+input.taskmsg-on:focus,
+input.taskmsg-off:focus {
+  outline-style: none;
+}
+
+.del {
+  margin: 0;
+  padding: 0;
+  width: 30px;
+  height: 30px;
+}
 

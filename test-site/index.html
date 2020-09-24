@@ -17,7 +17,7 @@
 
     <!-- <form action="" id="mainform"> -->
 
-      <!-- <fieldset>
+    <!-- <fieldset>
         <legend>Search</legend>
         <hr>
         <div id="searchBox">
@@ -30,32 +30,34 @@
         </div>
       </fieldset> -->
 
-      <fieldset>
-        <legend>Add Task</legend>
-        <hr>
-        <div id="addTask">
-            <input class="text-input" id="taskinfo" type="text" name="add-task" placeholder="Add your task here." @keyup.enter="addTodo">
-            <button id="task-add" type="button">+</button>
+    <fieldset>
+      <legend>Add Task</legend>
+      <hr>
+      <div id="addTask">
+        <input class="text-input" id="taskinfo" type="text" name="add-task" placeholder="Add your task here."
+          @keyup.enter="addTodo">
+        <button id="task-add" type="button" class="add">+</button>
 
+      </div>
+    </fieldset>
+
+
+    <fieldset>
+      <legend>Task List</legend>
+      <hr>
+      <!-- <ul id="todoTask"> -->
+      <div id="todoTask">
+        <div class="task-item">
+          <input id="task1" type="checkbox" class="check-box" style="zoom:180%;">
+          <input id="input1" type="text" class="taskmsg-on">
+          <img src="images/trash-can.svg" class="del">
         </div>
-      </fieldset>
+      </div>
+      <!-- </ul> -->
 
+    </fieldset>
 
-      <fieldset>
-        <legend>Task List</legend>
-        <hr>
-        <!-- <ul id="todoTask"> -->
-        <div id="todoTask">
-          <!-- <div class="task-item">
-            <input id="task1" type="checkbox" class="check-box">
-            <label for="task1" class="taskmsg">测试</label>
-          </div> -->
-        </div>
-        <!-- </ul> -->
-
-      </fieldset>
-
-      <!-- <fieldset>
+    <!-- <fieldset>
         <legend>Completed</legend>
         <hr>
       </fieldset> -->
