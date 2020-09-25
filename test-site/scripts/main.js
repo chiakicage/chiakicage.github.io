@@ -7,6 +7,30 @@ let tasklist2 = document.getElementById('todoTask2');
 let taskCount = 0;
 // console.log(searchbox, searchbutton, taskmsg, addbutton);
 
+let toggle1 = document.getElementById('toggle1');
+let toggle2 = document.getElementById('toggle2');
+
+toggle1.onclick = function () {
+    if (tasklist1.hasAttribute('hidden')) {
+        toggle1.setAttribute('style', 'transform: rotate(90deg)');
+        tasklist1.removeAttribute('hidden');
+    } else {
+        toggle1.setAttribute('style', 'transform: rotate(0deg)');
+        tasklist1.setAttribute('hidden', '');
+    }
+}
+toggle2.onclick = function () {
+    if (tasklist2.hasAttribute('hidden')) {
+        toggle2.setAttribute('style', 'transform: rotate(90deg)');
+        tasklist2.removeAttribute('hidden');
+    } else {
+        toggle2.setAttribute('style', 'transform: rotate(0deg)');
+        tasklist2.setAttribute('hidden', '');
+    }
+}
+
+
+
 function enterAdd(e) {
     if (e.keyCode == 13)
         addbutton.click();
@@ -15,25 +39,35 @@ function enterAdd(e) {
 let upd = new XMLHttpRequest();
 let rm = new XMLHttpRequest();
 let add = new XMLHttpRequest();
-let url = 'http://localhost:8000/'
-
-add.onreadystatechange = function () {
-    console.log('123');
-}
+// let url = 'http://[2001:da8:e009:1547:4dad:24ea:9c01:d7aa]'
+// let url = 'http://[2001:da8:e009:2a3a:4dad:24ea:9c01:d7aa]:8000/'
+let url = 'http://localhost:8000/';
 
 function updateTask(id, value, group) {
-    upd.open('GET', url + 'update?id=' + String(id) + '&value=' + String(value) + '&group=' + String(group));
+    // console.log('update');
+    upd.open('GET', url + 'api/update?id=' + String(id) + '&value=' + encodeURIComponent(String(value)) + '&group=' + String(group));
     upd.send();
 }
 
 function removeTask(id) {
-    rm.open('GET', url + 'remove?id=' + String(id));
+    rm.open('GET', url + 'api/remove?id=' + String(id));
     rm.send();
 }
 
-function addTask(id, value) {
-    add.open('GET', url + 'add?id=' + String(id) + '&value=' + String(value));
+function addTask(value) {
+    console.log('add ' + value);
+    add.open('GET', url + 'api/add?value=' + encodeURIComponent(String(value)));
     add.send();
+}
+
+add.onreadystatechange = function() {
+    if (add.readyState === 4) {
+        if (add.status === 200) {
+            taskCount = Number(add.responseText);
+        } else {
+            alert('Insert Failed.');
+        }
+    }
 }
 
 function addTaskn(value, group, id) {
@@ -41,14 +75,20 @@ function addTaskn(value, group, id) {
     d.setAttribute('class', 'task-item');
     d.setAttribute('id', String(id));
     let pt = document.createElement('input');
-    pt.setAttribute('id', 'test' + String(taskCount));
+    pt.setAttribute('id', 'test' + String(id));
     pt.setAttribute('type', 'checkbox');
     pt.setAttribute('style', 'zoom:180%');
     pt.setAttribute('class', 'check-box');
     let lb = document.createElement('input');
-    lb.setAttribute('value', value);
-    lb.setAttribute('edited', value);
-    lb.setAttribute('class', 'taskmsg-on');
+    lb.edited = lb.value = value;
+    if (group === 1) {
+        tasklist1.appendChild(d);
+        lb.className = 'taskmsg-on';
+    } else {
+        tasklist2.appendChild(d);
+        lb.className = 'taskmsg-off';
+        pt.checked = true;
+    }
     lb.setAttribute('type', 'text');
     lb.setAttribute('editing', 'false');
     lb.onfocus = function () {
@@ -57,9 +97,9 @@ function addTaskn(value, group, id) {
     }
     lb.onblur = function () {
         lb.setAttribute('editing', 'false');
-        if (lb.getAttribute('edited') !== lb.getAttribute('value')) {
-            updateTask(d.getAttribute('id'), lb.getAttribute('value'), lb.getAttribute('class') === 'taskmsg-on' ? 1 : 2);
-            lb.getAttribute('edited') = lb.getAttribute('value');
+        if (lb.edited !== lb.value) {
+            updateTask(d.getAttribute('id'), lb.value, lb.getAttribute('class') === 'taskmsg-on' ? 1 : 2);
+            lb.edited = lb.value;
         }
     }
     pt.onclick = function () {
@@ -74,14 +114,14 @@ function addTaskn(value, group, id) {
         }
     }
     let de = document.createElement('img');
-    de.setAttribute('src', 'images/trash-can.svg');
+    de.setAttribute('src', 'images/trash-can.png');
     de.setAttribute('class', 'del');
     de.onclick = function () {
         d.parentElement.removeChild(d);
         removeTask(d.getAttribute('id'));
     }
     let ed = document.createElement('img');
-    ed.setAttribute('src', 'images/pencil.svg');
+    ed.setAttribute('src', 'images/pencil.png');
     ed.setAttribute('class', 'edit');
     ed.onclick = function () {
         lb.setAttribute('editing', 'true');
@@ -91,10 +131,7 @@ function addTaskn(value, group, id) {
     d.appendChild(lb);
     d.appendChild(ed);
     d.appendChild(de);
-    tasklist1.appendChild(d);
-    if (group === 2) {
-        pt.click();
-    }
+    
 }
 
 
@@ -102,44 +139,34 @@ function initialize() {
     let init = new XMLHttpRequest();
     init.onreadystatechange = function () {
         if (init.readyState === 4) {
+            // alert(init.responseText);
             if (init.status === 200) {
                 arr = JSON.parse(init.responseText) || [];
-                // console.log(arr);
+                console.log(arr);
                 arr.forEach(element => {
-                    return addTaskn(element.value, element.group, element.id);
+                    return addTaskn(decodeURIComponent(element.value), element.group, element.id);
                 });
                 console.log(arr);
             } else {
-                alert('Failed');
+                alert('Init Failed');
             }
         }
     }
-    init.open('GET', url + 'init');
+    console.log('sending');
+    init.open('GET', url + 'api/init');
     init.send();
-    let init2 = new XMLHttpRequest();
-    init2.onreadystatechange = function () {
-        if (init2.readyState === 4) {
-            if (init2.status === 200) {
-                taskCount = Number(init2.responseText);
-                console.log(taskCount);
-            } else {
-                alert('Failed');
-            }
-        }
-    }
-    init2.open('GET', url + 'init2');
-    init2.send();
 }
 addbutton.onclick = function () {
     if (addtask.value === "") {
         return;
     } else {
-        addTaskn(addtask.value, 1, ++taskCount);
-        addTask(taskCount, addtask.value);
+        addTask(addtask.value);
+        addTaskn(addtask.value, 1, taskCount);
         addtask.value = "";
     }
 }
 
+console.log('123');
 initialize();
 
 // addtask.value = "?";

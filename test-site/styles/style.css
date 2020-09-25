@@ -61,6 +61,18 @@ legend {
   font-weight: 600;
 }
 
+#toggle1,
+#toggle2 {
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  margin: 0;
+  padding: 0;
+  /* color: #66ccff; */
+  transition: transform 0.5s;
+  -webkit-transition: transform 0.5s;
+}
+
 
 
 
@@ -122,7 +134,7 @@ input.taskmsg-off:focus {
   margin: 0;
   padding: 0;
   width: 30px;
-  height: 25px;
+  height: 30px;
 }
 
 .del {
