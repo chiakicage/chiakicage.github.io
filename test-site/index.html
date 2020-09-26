@@ -12,6 +12,7 @@
 
 <body>
 
+  
 
   <div id="centerColumn">
 
@@ -29,39 +30,36 @@
     </fieldset>
 
 
-    <fieldset>
-      <legend>
-        <img src="images/play-button2.png" id="toggle1" style="transform: rotate(90deg)">
-        TODO
-      </legend>
-      <hr>
-      <div id="todoTask1">
-      </div>
-
-    </fieldset>
-
-    <fieldset>
-      <legend>
-        <img src="images/play-button2.png" id="toggle2" style="transform: rotate(90deg)">
-        COMPLETED
-      </legend>
-      <hr>
-      <div id="todoTask2">
-
-      </div>
-    </fieldset>
-
-
-
-  </div>
-
-  <div id="leftColumn">
+    <div class="taskcontainer">
+      <fieldset>
+        <legend>
+          <img src="images/play-button2.png" id="toggle1" style="transform: rotate(90deg)">
+          TODO
+        </legend>
+        <hr>
+        <div id="todoTask1">
+        </div>
+  
+      </fieldset>
+  
+      <fieldset>
+        <legend>
+          <img src="images/play-button2.png" id="toggle2" style="transform: rotate(90deg)">
+          COMPLETED
+        </legend>
+        <hr>
+        <div id="todoTask2">
+  
+        </div>
+      </fieldset>
+    </div>
 
 
   </div>
 
   <div id="rightColumn">
   </div>
+
 
   <script src="scripts/main.js" defer></script>
 </body>

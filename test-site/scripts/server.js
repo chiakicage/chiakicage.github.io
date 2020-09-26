@@ -6,6 +6,7 @@ let path = require('path');
 let fs = require('fs');
 let mysql = require('mysql');
 
+
 let data = [{
     value: "test",
     group: 1,
@@ -28,11 +29,11 @@ console.log(1, root);
 
 let server = http.createServer(function (request, response) {
     let ur = url.parse(request.url);
+    console.log(ur);
     let ph = ur.pathname;
     let rq = ph.split('/');
     if (rq[1] === 'api') {
         console.log(ur.query);
-        // console.log(url.parse(request.url));
         if (rq[2] === 'add') {
             let s = ur.query;
             console.log(s);
@@ -140,6 +141,6 @@ let server = http.createServer(function (request, response) {
 
 
 });
-
+console.log('listenning on port 8000');
 server.listen(8000);
 
