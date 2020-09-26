@@ -24,16 +24,15 @@ let connection = mysql.createConnection({
 connection.connect();
 
 let root = path.resolve(process.argv[1] + '\\..\\..');
-console.log(root);
+console.log(1, root);
 
 let server = http.createServer(function (request, response) {
-    console.log(url.parse(request.url));
     let ur = url.parse(request.url);
     let ph = ur.pathname;
     let rq = ph.split('/');
-    console.log(rq);
     if (rq[1] === 'api') {
-        
+        console.log(ur.query);
+        // console.log(url.parse(request.url));
         if (rq[2] === 'add') {
             let s = ur.query;
             console.log(s);
@@ -50,6 +49,7 @@ let server = http.createServer(function (request, response) {
                         response.writeHead(200, {
                             'Access-Control-Allow-Origin': '*',
                         });
+                        console.log(result.insertId);
                         response.end(String(result.insertId));
                     }
                 }

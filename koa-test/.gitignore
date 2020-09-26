@@ -1,0 +1,5 @@
+# Specify filepatterns you want git to ignore.
+*.tmp
+*.swp
+node_modules/
+package-lock.json

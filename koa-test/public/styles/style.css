@@ -22,30 +22,74 @@ h1 {
 
 
 .add {
-  border-radius: 25px;
-  height: 48px;
-  width: 48px;
+  /* border-radius: 25px; */
+  height: 30px;
+  width: 30px;
   padding: 0;
-  margin: 0;
-  font-size: 19px;
-  font-family: monospace;
+  margin: 0 0 20px 7px;
+  /* font-size: 19px; */
+  /* font-family: monospace; */
   line-height: 0;
-  background: #ffffff3a;
-  color: #000000;
-  /* margin: 0 auto; */
-  border: 1px solid;
+  background: #ffffff;
+  color: #ffffff;
+  outline-style: none;
   text-align: center;
   font-weight: 500;
+  border: none;
 }
 
-.add:focus {
-  outline-style: none;
-  /* opacity: 50%; */
-}
 .add:hover {
   opacity: 50%;
 }
 
+#text-input {
+  outline-style: none; 
+  border: 1px solid #ccc;
+  padding: 10px 0px 10px 20px;
+  margin: 0 0 20px 0;
+  width: 92%;
+  height: 28px;
+  font-size: 20px;
+  border-radius: 25px;
+  font-family: "Microsoft soft";
+}
+
+#search-input {
+  outline-style: none; 
+  border: 1px solid #ccc;
+  padding: 10px 0px 10px 20px;
+  margin: 0 0 20px 10px;
+  width: 80%;
+  height: 28px;
+  font-size: 20px;
+  border-radius: 25px;
+  font-family: "Microsoft soft";
+}
+
+.search {
+  border-radius: 25px;
+  height: 30px;
+  width: 30px;
+  padding: 0;
+  margin: 0 0 20px 7px;
+  /* font-size: 19px; */
+  /* font-family: monospace; */
+  line-height: 0;
+  background: #ffffff;
+  color: #ffffff;
+  outline-style: none;
+  text-align: center;
+  font-weight: 500;
+  border: none;
+}
+
+#signin {
+  text-align: right;
+}
+
+#sidebar {
+  padding: 20px 20px 10px 20px;
+}
 
 fieldset {
   width: 600px;
@@ -69,32 +113,24 @@ legend {
   margin: 0;
   padding: 0;
   /* color: #66ccff; */
-  transition: transform 0.2s;
-  -webkit-transition: transform 0.2s;
+  transition: transform 0.5s;
+  -webkit-transition: transform 0.5s;
 }
 
 
 
 
-input.text-input {
-  outline-style: none; 
-  border: 1px solid #ccc;
-  padding: 10px 0px 10px 20px;
-  width: 516px;
-  height: 28px;
-  font-size: 20px;
-  border-radius: 25px;
-  font-family: "Microsoft soft";
-}
 
-input.text-input:hover {
+
+/* #text-input:hover {
   box-shadow: 0 2px 4px 0 rgba(16, 206, 212, 0.74);
-}
+} */
 
-#todoTask1,
-#todoTask2 {
-  margin: 0 0;
-  padding: 0 0;
+#taskcontainer {
+  padding-top: 0px;
+  padding-bottom: 0px;
+  margin-top: 0px;
+  margin-bottom: 0px;
   overflow: hidden;
   display: block;
 }

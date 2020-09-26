@@ -11,24 +11,23 @@ let toggle1 = document.getElementById('toggle1');
 let toggle2 = document.getElementById('toggle2');
 
 toggle1.onclick = function () {
-    // $(toggle).attr('style')
-    if (toggle1.getAttribute('style') === 'transform: rotate(90deg)') {
-        toggle1.setAttribute('style', 'transform: rotate(0deg)')
+    if (tasklist1.hasAttribute('hidden')) {
+        toggle1.setAttribute('style', 'transform: rotate(90deg)');
+        tasklist1.removeAttribute('hidden');
     } else {
-        toggle1.setAttribute('style', 'transform: rotate(90deg)')
+        toggle1.setAttribute('style', 'transform: rotate(0deg)');
+        tasklist1.setAttribute('hidden', '');
     }
-    $(tasklist1).slideToggle(200);
 }
 toggle2.onclick = function () {
-    // $(toggle).attr('style')
-    if (toggle2.getAttribute('style') === 'transform: rotate(90deg)') {
-        toggle2.setAttribute('style', 'transform: rotate(0deg)')
+    if (tasklist2.hasAttribute('hidden')) {
+        toggle2.setAttribute('style', 'transform: rotate(90deg)');
+        tasklist2.removeAttribute('hidden');
     } else {
-        toggle2.setAttribute('style', 'transform: rotate(90deg)')
+        toggle2.setAttribute('style', 'transform: rotate(0deg)');
+        tasklist2.setAttribute('hidden', '');
     }
-    $(tasklist2).slideToggle(200);
 }
-
 
 
 
@@ -61,13 +60,10 @@ function addTask(value) {
     add.send();
 }
 
-add.onreadystatechange = function () {
+add.onreadystatechange = function() {
     if (add.readyState === 4) {
         if (add.status === 200) {
             taskCount = Number(add.responseText);
-            // console.log('tk', taskCount);
-            addTaskn(addtask.value, 1, taskCount);
-            addtask.value = "";
         } else {
             alert('Insert Failed.');
         }
@@ -84,7 +80,7 @@ function addTaskn(value, group, id) {
     pt.setAttribute('style', 'zoom:180%');
     pt.setAttribute('class', 'check-box');
     let lb = document.createElement('input');
-    lb.value = value;
+    lb.edited = lb.value = value;
     if (group === 1) {
         tasklist1.appendChild(d);
         lb.className = 'taskmsg-on';
@@ -101,10 +97,10 @@ function addTaskn(value, group, id) {
     }
     lb.onblur = function () {
         lb.setAttribute('editing', 'false');
-    }
-
-    lb.onchange = function () {
-        updateTask(d.getAttribute('id'), lb.value, lb.getAttribute('class') === 'taskmsg-on' ? 1 : 2);
+        if (lb.edited !== lb.value) {
+            updateTask(d.getAttribute('id'), lb.value, lb.getAttribute('class') === 'taskmsg-on' ? 1 : 2);
+            lb.edited = lb.value;
+        }
     }
     pt.onclick = function () {
         console.log('toggle');
@@ -136,7 +132,7 @@ function addTaskn(value, group, id) {
     d.appendChild(lb);
     d.appendChild(ed);
     d.appendChild(de);
-
+    
 }
 
 
@@ -166,9 +162,9 @@ addbutton.onclick = function () {
         return;
     } else {
         addTask(addtask.value);
-        // console.log(taskCount);
-        // addTaskn(addtask.value, 1, taskCount);
-        
+        console.log(taskCount);
+        addTaskn(addtask.value, 1, taskCount);
+        addtask.value = "";
     }
 }
 

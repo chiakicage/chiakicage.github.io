@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title>Bootstrap Test</title>
+  <script src="https://compodoc.app/assets/js/jquery-1.11.1.min.js"></script>
+  <script src="https://compodoc.app/assets/js/jquery.backstretch.min.js"></script>
+  <script type="text/javascript" src="https://www.bootcss.com/p/layoutit/js/jquery-ui.js"></script>
+  <link rel="stylesheet" href="https://www.bootcss.com/p/layoutit/css/bootstrap-combined.min.css">
+  <link rel="stylesheet" herf="https://www.bootcss.com/p/layoutit/css/layoutit.css">
+  <script type="text/javascript" src="https://www.bootcss.com/p/layoutit/js/jquery.ui.touch-punch.min.js"></script>
+  <script type="text/javascript" src="https://www.bootcss.com/p/layoutit/js/jquery.htmlClean.js"></script>
+  <link rel="stylesheet" href="public/styles/style.css">
+</head>
+
+<body>
+  <div class="container-fluid">
+    <div class="row-fluid">
+      <div class="span8">
+        <h3 class="text-center">
+          TODO LIST
+        </h3>
+
+
+        <div class="add-task">
+          <input id="text-input" class="input-medium search-query" type="text" />
+          <button type="button" class="add">
+            <img src="public/images/plus.png">
+          </button>
+        </div>
+
+        <div class="accordion" id="accordion-138256">
+          <div class="accordion-group">
+            <div class="accordion-heading">
+              <a id="todo-toggle" class="accordion-toggle" data-toggle="collapse" data-parent="#accordion-138256"
+                href="#accordion-element-34711">
+                TODO
+              </a>
+            </div>
+            <div id="accordion-element-34711" class="accordion-body in collapse">
+              <div class="accordion-inner">
+
+                <div class="task-item" id="44">
+                  <input id="test44" type="checkbox" style="zoom:180%" class="check-box">
+                  <input class="taskmsg-on" type="text" editing="false">
+                  <img src="public/images/pencil.png" class="edit">
+                  <img src="public/images/trash-can.png" class="del">
+                </div>
+                
+              </div>
+            </div>
+          </div>
+          <div class="accordion-group">
+            <div class="accordion-heading">
+              <a id="completed-toggle" class="accordion-toggle" data-toggle="collapse" data-parent="#accordion-138256"
+                href="#accordion-element-575745">
+                COMPLETED
+              </a>
+            </div>
+            <div id="accordion-element-575745" class="accordion-body collapse">
+              <div class="accordion-inner">
+                功能块...
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- <a id="modal-587762" href="#modal-container-587762" role="button" class="btn" data-toggle="modal">触发遮罩窗体</a> -->
+
+        <div id="modal-container-587762" class="modal hide fade" role="dialog" aria-labelledby="myModalLabel"
+          aria-hidden="true">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+            <h3 id="myModalLabel">
+              登录/注册
+            </h3>
+          </div>
+          <div class="modal-body">
+            <!-- <p> -->
+            <form class="form-horizontal">
+              <div class="control-group">
+                <label class="control-label" for="inputEmail">用户名</label>
+                <div class="controls">
+                  <input id="inputEmail" type="text" />
+                </div>
+              </div>
+              <div class="control-group">
+                <label class="control-label" for="inputPassword">密码</label>
+                <div class="controls">
+                  <input id="inputPassword" type="password" />
+                </div>
+              </div>
+              <div class="control-group">
+                <div class="controls">
+                  <!-- <label class="checkbox"><input type="checkbox" /> Remember me</label>  -->
+                  <p id="error-message"></p>
+                  <button type="submit" class="btn">登录</button>
+                  <button type="submit" class="btn">注册</button>
+                </div>
+              </div>
+            </form>
+            <!-- </p> -->
+          </div>
+          <div class="modal-footer">
+            <button class="btn" data-dismiss="modal" aria-hidden="true">关闭</button>
+            <!-- <button class="btn btn-primary">保存设置</button> -->
+          </div>
+        </div>
+      </div>
+
+      <div class="span4">
+        <div id="sidebar" class="hero-unit">
+          <p id="signin">
+            <a id="modal-587762" href="#modal-container-587762" role="button" class="btn" data-toggle="modal">登录/注册</a>
+            <!-- <a id="modal-587762" href="#modal-container-587762" role="button" class="btn" data-toggle="modal">登录</a> | <a herf="#">注册</a> -->
+          </p>
+          <div class="search-task">
+            <input id="search-input" class="input-medium search-query" type="text" />
+            <button type="button" class="search">
+              <img src="public/images/magnifying-glass.png">
+            </button>
+          </div>
+          <h1>
+            Hello, world!
+          </h1>
+          <p>
+            <!-- 这是一个可视化布局模板, 你可以点击模板里的文字进行修改, 也可以通过点击弹出的编辑框进行富文本修改. 拖动区块能实现排序. -->
+          </p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <script type="text/javascript" src="https://www.bootcss.com/p/layoutit/js/bootstrap.min.js"></script>
+  <script src="public/scripts/main.js"></script>
+  <!-- <script type="text/javascript" src="https://www.bootcss.com/p/layoutit/js/scripts.js"></script> -->
+  <!-- <script type="text/javascript" src="https://www.bootcss.com/p/layoutit/ckeditor/styles.js?t=D3NA"></script>
+  <script type="text/javascript" src="https://www.bootcss.com/p/layoutit/ckeditor/lang/zh-cn.js?t=D3NA"></script>
+  <script type="text/javascript" src="https://www.bootcss.com/p/layoutit/ckeditor/styles.js?t=D3NA"></script> -->
+</body>
+
+</html>
