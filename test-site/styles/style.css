@@ -8,27 +8,45 @@ h1 {
   text-align: center;
 }
 
-
+#leftColumn {
+  width:20%;
+  height: 100%;
+  /* margin: 5px 0 0 10px;  */
+  background-color: aqua;
+  position: absolute;
+  left: 0px;
+}
 
 
 #centerColumn {
-  margin: 0;
-  /* border: 1px solid; */
-  width: 70%;
-  height: 650px;
+  /* margin: 5px 0 0 10px; */
+  /* border: 5px double; */
+  padding: 0 0;
+  border-color: #6087a13f;
+  border-radius: 10px;
+  width: 50%;
+  height: 100%;
+  background-color: blue;
+  position: absolute;
+  left: 20%;
   /* overflow: scroll; */
 }
 
 #rightColumn {
-  margin: 0 0 0 900px;
+  background-color: blueviolet;
+  width:30%;
+  /* height: 680px; */
+  height: 100%;
+  position: absolute;
+  /* margin: 0 0 0 900px; */
+  right: 0px;
 }
 
 .taskcontainer {
   height: 60%;
-  width: 800px;
+  width: 660px;
   margin: 0 auto;
-  overflow: scroll;
-  
+  overflow-y: scroll;
 }
 
 
@@ -70,6 +88,8 @@ legend {
   font-size: 30px;
   font-family: Consolas;
   font-weight: 600;
+  /* width: 60%; */
+  margin: 0 0;
 }
 
 #toggle1,
@@ -85,7 +105,9 @@ legend {
 }
 
 
-
+hr {
+  width: 100%;
+}
 
 input.text-input {
   outline-style: none; 
@@ -99,7 +121,7 @@ input.text-input {
 }
 
 input.text-input:hover {
-  box-shadow: 0 2px 4px 0 rgba(16, 206, 212, 0.74);
+  box-shadow: 0 2px 4px 0 rgba(16, 205, 212, 0.288);
 }
 
 #todoTask1,
