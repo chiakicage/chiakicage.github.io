@@ -10,6 +10,9 @@ let taskCount = 0;
 let toggle1 = document.getElementById('toggle1');
 let toggle2 = document.getElementById('toggle2');
 
+let info = $('#info');
+let taskTitle = $('.task-title');
+
 toggle1.onclick = function () {
     // $(toggle).attr('style')
     if (toggle1.getAttribute('style') === 'transform: rotate(90deg)') {
@@ -96,6 +99,7 @@ function addTaskn(value, group, id) {
     lb.setAttribute('type', 'text');
     lb.setAttribute('editing', 'false');
     lb.onfocus = function () {
+        taskTitle.text(lb.value);
         if (lb.getAttribute('editing') === 'false')
             lb.blur();
     }

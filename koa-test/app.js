@@ -1,5 +1,6 @@
 const Koa = require('koa');
 const router = require('koa-router')();
+const filestatic = require('koa-static');
 const mysql = require('mysql');
 const fs = require('fs');
 const path = require('path');
@@ -16,7 +17,9 @@ connection.connect();
 
 let root = path.resolve(process.argv[1] + '\\..');
 console.log(root);
-
+app.use(filestatic(
+    path.join(__dirname)
+));
 app.use(async (ctx, next) => {
     // console.log(ctx);
     ctx.set({
