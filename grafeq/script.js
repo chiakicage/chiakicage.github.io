@@ -1,129 +1,51 @@
-const TT = [true, true];
-const FT = [false, true];
-const FF = [false, false];
-
-function Add(x, y) {
-    return [math.add(x[0], y[0]), math.add(x[1], y[1])];
-}
-
-function Sub(x, y) {
-    return [math.subtract(x[0], y[1]), math.subtract(x[1], y[0])];
-}
-
-function Mul(x, y) {
-    return [
-        math.min(
-            math.multiply(x[0], y[0]), 
-            math.multiply(x[0], y[1]), 
-            math.multiply(x[1], y[0]), 
-            math.multiply(x[1], y[1])
-        ),
-        math.max(
-            math.multiply(x[0], y[0]),
-            math.multiply(x[0], y[1]),
-            math.multiply(x[1], y[0]),
-            math.multiply(x[1], y[1])
-        )
-    ];
-}
-
-function number(x) {
-    return [x, x];
-}
 
 
-function Contain(x, y) {
-    return math.smallerEq(x[0], y[0]) && math.smallerEq(y[1], x[1]);
-}
 
-function Inverse(x) {
-    if (Contain(x, number(0))) return [-Infinity, Infinity];
-    return [math.divide(1, x[1]), math.divide(1, x[0])];
-}
-
-function Div(x, y) {
-    return Mul(x, inverse(y));
-}
-
-function Sqrt(x) {
-    if (x[1] < 0) return [0, 0];
-    else if (x[0] < 0) return [0, math.sqrt(x[1])];
-    else return [math.sqrt(x[0]), math.sqrt(x[1])];
-}
-
-function Sin(x) {
-    let y = [x[0], x[1]];
-    let d = math.floor((y[1] - y[0]) / math.tau);
-    if (d >= 1) return [-1, 1];
-    if (y[0] < 0) {
-        d = math.floor(y[0] / math.tau);
-        y[0] -= (d + 1) * math.tau, y[1] -= (d + 1) * math.tau;
-    } else {
-        d = math.floor(y[0] / math.tau);
-        y[0] -= d * math.tau, y[1] -= d * math.tau;
+function evaluate(value) {
+    if (global_tag) {
+        console.log(value[0].toString());
+        console.log(value[1].toString());
+        console.log(Add(Sin(value[0]), Cos(value[1])).toString());
+        console.log(Sin(Add(Sin(value[0]), Cos(value[1]))).toString());
+        console.log(Add(Sin(Mul(value[0], value[1])), Cos(value[0])).toString());
+        console.log(Cos(Add(Sin(Mul(value[0], value[1])), Cos(value[0]))).toString());
     }
-    let ret = [
-        math.min(math.sin(y[0]), math.sin(y[1])),
-        math.max(math.sin(y[0]), math.sin(y[1]))
-    ];
-    if (Contain(y, number(math.pi / 2))) ret[1] = 1
-    if (Contain(y, number(math.pi / 2 * 3))) ret[0] = -1
-    return ret; 
+    // console.log(value);
+    // return Equal(Abs(Sin(Sub(Sqr(value[0]), Sqr(value[1])))), Add(Sin(Add(value[0], value[1])), Cos(Mul(value[0], value[1]))));
+    return Equal(Sin(Add(Sin(value[0]), Cos(value[1]))), Cos(Add(Sin(Mul(value[0], value[1])), Cos(value[0]))));
+    // return Equal(Max(Abs(value[0]), Sqr(value[0])), value[1]);
+    // return Equal(Sin(Sqr(value[0]), Sqr(value[1])), Cos(Mul(value[0], value[1])));
+    return Equal(Exp(Add(Sin(value[0]), Cos(value[1]))), Sin(Exp(Add(value[0], value[1]))));
+    // return Greateq(Sin(value[0]), value[1]);
+    // return Equal(Sqr(Sub(value[0], number(3))), value[1]);
+    // return Equal(Add(value[1], number(4)), Mul(number(1), Mul(Sub(value[0], number(4)), value[0])));
+    return Equal(
+        Sub(
+            Mul(
+                number(4),
+                Add(Sqr(value[0]), Sqr(value[1]))
+            ),
+            Mul(number(7), Mul(value[0], value[1]))
+        ),
+        number(50));
 }
-
-function Abs(x) {
-    if (Contain(x, 0)) return [0, math.max(math.abs(x[0]), math.abs(x[1]))];
-    return [
-        math.min(math.abs(x[0]), math.abs(x[1])),
-        math.max(math.abs(x[0]), math.abs(x[1]))
-    ];
-}
-
-function Greateq(x, y) {
-    return [math.largerEq(x[0], y[1]), math.largerEq(x[1], y[0])];
-}
-
-function Lesseq(x, y) {
-    return [math.smallerEq(x[1], y[0]), math.smallerEq(x[0], y[1])];
-}
-
-function And(x, y) {
-    return [x[0] && y[0], x[1] && y[1]];
-}
-
-function Or(x, y) {
-    return [x[0] || y[0], x[1] || y[1]];
-}
-
-
-const Eps = number(1e-10);
-
-function Equal(x, y) {
-    let tmp = Sub(x, y);
-    // console.log(tmp[0].toString(), tmp[1].toString());
-    // console.log(Eps);
-    if (Contain(Eps, tmp)) return TT;
-    else if (math.deepEqual(Greateq(Eps, tmp), TT)) return FF;
-    else if (math.deepEqual(Lesseq(Eps, tmp), TT)) return FF;
-    else return FT;
-}
-
-
 
 let canvas = document.getElementById('drawer');
 let ctx = canvas.getContext('2d');
 
 function paintRed(rec) {
+    // console.log(rec[0], rec[1]);
     ctx.fillStyle = '#ff0000';
     ctx.fillRect(
-        rec[0][0], 
-        rec[1][0], 
+        rec[0][0],
+        rec[1][0],
         rec[0][1] - rec[0][0] + 1,
         rec[1][1] - rec[1][0] + 1
     );
 }
 
 function paintBlack(rec) {
+    // return;
     ctx.fillStyle = '#000000';
     ctx.fillRect(
         rec[0][0],
@@ -134,6 +56,7 @@ function paintBlack(rec) {
 }
 
 function paintWhite(rec) {
+    // console.log(rec[0], rec[1]);
     ctx.fillStyle = '#ffffff';
     ctx.fillRect(
         rec[0][0],
@@ -143,26 +66,21 @@ function paintWhite(rec) {
     );
 }
 
-
-function evaluate(value) {
-    // return Equal(Sin(value[0]), value[1]);
-    return Equal(Add(Mul(Sub(value[0], number(3)), Sub(value[0], number(3))), Mul(Sub(value[1], number(3)), Sub(value[1], number(3)))), number(25));
-    return Equal(Add(value[1], number(4)), Mul(number(1), Mul(Sub(value[0], number(4)), value[0])));
-    return Equal(
-            Sub(
-                Mul(
-                    number(4),
-                    Add(Mul(value[0], value[0]), Mul(value[1], value[1]))
-                ),
-                Mul(number(7), Mul(value[0], value[1]))
-            ),
-            number(50));
-}
-
-const TIME = 0;
+const TIME = 1;
 const BLOCK = 1;
 
+function Graphing(v, p) {
+    setTimeout(() => {
+        Graph(v, p);
+    }, TIME);    
+}
+
 function Graph(value, pixiv) {
+    if (math.deepEqual(pixiv, [[256, 511], [0, 255]])) {
+        // console.log("test");
+        // console.log(value[0], value[1]);
+        // console.log(evaluate(value));
+    }
     // console.log(value[0][0].toString());
     // console.log(pixiv[0], pixiv[1]);
     // console.log(123);
@@ -172,10 +90,11 @@ function Graph(value, pixiv) {
         paintBlack(pixiv);
         return;
     }
-
+    
+    // console.log(value);
     let midv = [
-        math.divide(math.add(value[0][0], value[0][1]), 2),
-        math.divide(math.add(value[1][0], value[1][1]), 2)
+        div(add(value[0][0], value[0][1]), 2),
+        div(add(value[1][0], value[1][1]), 2)
     ];
     let midp = [
         math.floor((pixiv[0][0] + pixiv[0][1]) / 2),
@@ -219,41 +138,34 @@ function Graph(value, pixiv) {
     let tmp = evaluate(v1);
     if (math.deepEqual(tmp, TT)) paintBlack(p1);
     else if (math.deepEqual(tmp, FF)) paintWhite(p1);
-    else {
-        setTimeout(() => {
-            Graph(v1, p1);
-        }, TIME);
-    }
+    else Graphing(v1, p1);
     tmp = evaluate(v2);
     if (math.deepEqual(tmp, TT)) paintBlack(p2);
     else if (math.deepEqual(tmp, FF)) paintWhite(p2);
-    else {
-        setTimeout(() => {
-            Graph(v2, p2);
-        }, TIME);
-    }
+    else Graphing(v2, p2);
+    if (p3[0][0] === 256 && p3[1][0] === 64) 
+        global_tag = true;
     tmp = evaluate(v3);
+    global_tag = false;
+    // console.log(Sin(v3[0]), v3[0]);
     if (math.deepEqual(tmp, TT)) paintBlack(p3);
     else if (math.deepEqual(tmp, FF)) paintWhite(p3);
-    else {
-        setTimeout(() => {
-            Graph(v3, p3);
-        }, TIME);
-    }
+    else Graphing(v3, p3);
     tmp = evaluate(v4);
     if (math.deepEqual(tmp, TT)) paintBlack(p4);
     else if (math.deepEqual(tmp, FF)) paintWhite(p4);
-    else {
-        setTimeout(() => {
-            Graph(v4, p4);
-        }, TIME);
-    }
+    else Graphing(v4, p4);
 
 }
 value = [
-    [-10, 10], [-10, 10]
+    [trans(-10), trans(10)], [trans(-10), trans(10)]
 ];
 pixiv = [[0, 511], [0, 511]];
 
 paintRed(pixiv);
 Graph(value, pixiv);
+
+document.onmousedown = (e) => {
+    e = e || window.event;
+    console.log(e.clientX - canvas.offsetLeft - 1, e.clientY - canvas.offsetTop - 1);
+}
