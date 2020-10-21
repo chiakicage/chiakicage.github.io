@@ -2,23 +2,29 @@
 
 
 function evaluate(value) {
-    if (global_tag) {
-        console.log(value[0].toString());
-        console.log(value[1].toString());
-        console.log(Add(Sin(value[0]), Cos(value[1])).toString());
-        console.log(Sin(Add(Sin(value[0]), Cos(value[1]))).toString());
-        console.log(Add(Sin(Mul(value[0], value[1])), Cos(value[0])).toString());
-        console.log(Cos(Add(Sin(Mul(value[0], value[1])), Cos(value[0]))).toString());
-    }
+    // if (global_tag) {
+    //     console.log(value[0].toString());
+    //     console.log(value[1].toString());
+    //     console.log(Add(Sin(value[0]), Cos(value[1])).toString());
+    //     console.log(Sin(Add(Sin(value[0]), Cos(value[1]))).toString());
+    //     console.log(Add(Sin(Mul(value[0], value[1])), Cos(value[0])).toString());
+    //     console.log(Cos(Add(Sin(Mul(value[0], value[1])), Cos(value[0]))).toString());
+    // }
     // console.log(value);
     // return Equal(Abs(Sin(Sub(Sqr(value[0]), Sqr(value[1])))), Add(Sin(Add(value[0], value[1])), Cos(Mul(value[0], value[1]))));
     return Equal(Sin(Add(Sin(value[0]), Cos(value[1]))), Cos(Add(Sin(Mul(value[0], value[1])), Cos(value[0]))));
     // return Equal(Max(Abs(value[0]), Sqr(value[0])), value[1]);
     // return Equal(Sin(Sqr(value[0]), Sqr(value[1])), Cos(Mul(value[0], value[1])));
-    return Equal(Exp(Add(Sin(value[0]), Cos(value[1]))), Sin(Exp(Add(value[0], value[1]))));
+    // return Equal(Exp(Add(Sin(value[0]), Cos(value[1]))), Sin(Exp(Add(value[0], value[1]))));
     // return Greateq(Sin(value[0]), value[1]);
     // return Equal(Sqr(Sub(value[0], number(3))), value[1]);
     // return Equal(Add(value[1], number(4)), Mul(number(1), Mul(Sub(value[0], number(4)), value[0])));
+    return Greateq(
+        Mul(
+            Sub(value[1], number(-5)), 
+            Cos(Mul(number(4), Sqrt(Add(Sqr(Sub(value[0], number(4))), Sqr(value[1])))))),
+        Mul(value[0], Sin(Mul(number(2), Sqrt(Add(Sqr(value[0]), Sqr(value[1])))))));
+
     return Equal(
         Sub(
             Mul(

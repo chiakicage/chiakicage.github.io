@@ -1,206 +1,28 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <title> GrafEq Online</title>
-        <script src="https://cdn.bootcdn.net/ajax/libs/mathjs/7.5.1/math.min.js"></script>
-        <style>
-            /* body {
+
+<head>
+    <title> GrafEq Online test</title>
+    <script src="https://cdn.bootcdn.net/ajax/libs/mathjs/7.5.1/math.min.js"></script>
+    <style>
+        /* body {
                 background-color: blue;
             } */
-            canvas {
-                position: absolute;
-                left: 10%;
-                right: 10%;
-                 
-                border: 1px solid gray;
-                margin: 0 auto;
-            }
-        </style>
-    </head>
-    <body>
-        <canvas id="drawer" width="512" height="512"></canvas>
-        <script>
-            class Interval {
-                constructor(l, r) {
-                    this.l = l;
-                    this.r = r;
-                }
+        canvas {
+            position: absolute;
+            left: 10%;
+            right: 10%;
 
-                contain(x) {
-                    return this.l <= x && x <= this.r;
-                }
+            border: 1px solid gray;
+            margin: 0 auto;
+        }
+    </style>
+</head>
 
-                inverse() {
-                    if (this.contain(0)) 
-                        return new Interval(-Infinity, Infinity);
-                    else
-                        return new Interval(1 / this.r, 1 / this.l);
-                }
+<body>
+    <canvas id="drawer" width="512" height="512"></canvas>
+    <script src="./calc.js"></script>
+    <script src="./script.js"></script>
+</body>
 
-                equal(x) {
-                    return this.l === x.l && this.r === x.r;
-                }
-
-            }
-
-            class Block {
-                constructor(x, y) {
-                    this.X = x;
-                    this.Y = y;
-                }
-            }
-
-            const TT = new Interval(true, true);
-            const FT = new Interval(false, true);
-            const FF = new Interval(false, false);
-
-            function Add(x, y) {
-                return new Interval(x.l + y.l, x.r + y.r);
-            }
-            function Sub(x, y) {
-                return new Interval(x.l - y.r, x.r - y.l);
-            }
-            function Mul(x, y) {
-                return new Interval(
-                    Math.min(x.l * y.l, x.l * y.r, x.r * y.l, x.r * y.r),
-                    Math.max(x.l * y.l, x.l * y.r, x.r * y.l, x.r * y.r)
-                );
-            }
-            function Div(x, y) {
-                return Mul(x, y.inverse());
-            }
-            function Sqrt(x) {
-                if (x.r < 0) return new Interval(0, 0);
-                else if (x.l < 0) return new Interval(0, Math.sqrt(x.r));
-                else return new Interval(Math.sqrt(x.l), Math.sqrt(x.r));
-            }
-            function Abs(x) {
-                if (x.contain(0)) return new Interval(0, Math.max(Math.abs(x.l), Math.abs(r)));
-                return new Interval(Math.min(Math.abs(x.l), Math.abs(x.r)), Math.max(Math.abs(x.l), Math.abs(x.r)));
-            }
-            function Great(x, y) {
-                return new Interval(x.l >= y.r, x.r >= y.l);
-            }
-            function Less(x, y) {
-                return new Interval(x.r <= y.l, x.l <= y.r);
-            }
-            function And(x, y) {
-                return new Interval(x.l && y.l, x.r && y.r); 
-            }
-            function Or(x, y) {
-                return new Interval(x.l || y.l, x.r || y.r);
-            }
-            function Equal(x, y) {
-                // console.log(Great(x, y) === FT);
-                if (Great(x, y).equal(FT)) return FT;
-                else return FF;
-            }
-            
-            let canvas = document.getElementById('drawer');
-            let ctx = canvas.getContext('2d');
-            
-            
-            
-            function paintRed(B) {
-                ctx.fillStyle = '#ff0000';
-                ctx.fillRect(B.X.l, B.Y.l, B.X.r - B.X.l + 1, B.Y.r - B.Y.l + 1);
-            }
-            function paintBlack(B) {
-                ctx.fillStyle = '#000000';
-                ctx.fillRect(B.X.l, B.Y.l, B.X.r - B.X.l + 1, B.Y.r - B.Y.l + 1);
-            }
-            function paintWhite(B) {
-                ctx.fillStyle = '#ffffff';
-                ctx.fillRect(B.X.l, B.Y.l, B.X.r - B.X.l + 1, B.Y.r - B.Y.l + 1);
-            }
-
-            function createBlock(rl, rr, pl, pr) {
-                return new Block(new Interval(rl, rr), new Interval(pl, pr));
-            }
-
-            function number(x) {
-                return new Interval(x, x);
-            }
-            
-            function evaluate(B) {
-                // return Less(B.Y, Sqrt(B.X));
-                return Equal(
-                    Sub(Mul(
-                        number(4), 
-                        Add(Mul(B.X, B.X), Mul(B.Y, B.Y))), 
-                        Mul(number(5), Mul(B.X, B.Y))), number(100));
-                // return Equal(Add(Add(Mul(number(3), B.X), Mul(number(2), B.Y)), Add(Mul(number(4), B.X.inverse()), B.Y.inverse())), number(10));
-            }
-
-            const TIME = 0;
-            const BLOCK = 1;
-
-            function Graph(R, P) {
-                // console.log(R.X.l, R.X.r, R.Y.l, R.Y.r);
-                // console.log(P.X.r - P.X.l + 1);
-                if (P.X.r - P.X.l + 1 === BLOCK) {
-                    paintBlack(P);
-                    return;
-                }
-                let midrx = (R.X.l + R.X.r) / 2;
-                let midry = (R.Y.l + R.Y.r) / 2;
-                let midpx = Math.floor((P.X.l + P.X.r) / 2);
-                let midpy = Math.floor((P.Y.l + P.Y.r) / 2);
-                
-                let AR = createBlock(R.X.l, midrx, midry, R.Y.r);
-                let AP = createBlock(P.X.l, midpx, P.Y.l, midpy);
-                let BR = createBlock(midrx, R.X.r, midry, R.Y.r);
-                let BP = createBlock(midpx + 1, P.X.r, P.Y.l, midpy);
-                let CR = createBlock(R.X.l, midrx, R.Y.l, midry);
-                let CP = createBlock(P.X.l, midpx, midpy + 1, P.Y.r);
-                let DR = createBlock(midrx, R.X.r, R.Y.l, midry);
-                let DP = createBlock(midpx + 1, P.X.r, midpy + 1, P.Y.r);
-
-                let tmp = evaluate(AR);
-                // console.log(tmp);
-                if (tmp.equal(TT)) paintBlack(AP);
-                else if (tmp.equal(FF)) paintWhite(AP);
-                else {
-                    setTimeout(() => {
-                        Graph(AR, AP);
-                    }, TIME);
-                }
-
-                tmp = evaluate(BR);
-                if (tmp.equal(TT)) paintBlack(BP);
-                else if (tmp.equal(FF)) paintWhite(BP);
-                else {
-                    setTimeout(() => {
-                        Graph(BR, BP);
-                    }, TIME);
-                }
-
-                tmp = evaluate(CR);
-                if (tmp.equal(TT)) paintBlack(CP);
-                else if (tmp.equal(FF)) paintWhite(CP);
-                else {
-                    setTimeout(() => {
-                        Graph(CR, CP);
-                    }, TIME);
-                }
-                tmp = evaluate(DR);
-                if (tmp.equal(TT)) paintBlack(DP);
-                else if (tmp.equal(FF)) paintWhite(DP);
-                else {
-                    setTimeout(() => {
-                        Graph(DR, DP);
-                    }, TIME);
-                }
-            }
-            
-            R = createBlock(-10, 10, -10, 10);
-            P = createBlock(0, 511, 0, 511);
-
-            paintRed(P);
-            Graph(R, P);
-            // ctx.fillStyle = '#ee0000';
-            // ctx.fillRect(0, 0, 512, 512);
-            // ctx.fillRect(256, 0, 511, 511);
-        </script>
-    </body>
 </html>
