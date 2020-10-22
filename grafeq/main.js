@@ -6,10 +6,10 @@ pixiv = [[0, 511], [0, 511]];
 // paintRed(pixiv);
 // Graph(value, pixiv);
 
-document.onmousedown = (e) => {
-    e = e || window.event;
-    console.log(e.clientX - canvas.offsetLeft - 1, e.clientY - canvas.offsetTop - 1);
-}
+// document.onmousedown = (e) => {
+//     e = e || window.event;
+//     console.log(e.clientX - canvas.offsetLeft - 1, e.clientY - canvas.offsetTop - 1);
+// }
 
 let input = document.querySelector('#formula');
 
