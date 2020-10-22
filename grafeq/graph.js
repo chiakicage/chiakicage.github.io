@@ -4,6 +4,9 @@ function calculate(value) {
     X = value[0], Y = value[1];
     reset();
     let ret = Expression();
+    // console.log(exbuffer, expos);
+    // console.log(ret);
+    // console.log("nxt " + nxtLexeme());
     if (nxtLexeme()) throw 'Illegal Expression!';
     return ret;
 }

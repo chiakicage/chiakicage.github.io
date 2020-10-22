@@ -16,6 +16,7 @@ let input = document.querySelector('#formula');
 input.onkeydown = (e) => {
     if (e.keyCode === 13) {
         init(input.value);
+        // console.log(input.value);
         try {
             paintRed(pixiv);
             Graph(value, pixiv);

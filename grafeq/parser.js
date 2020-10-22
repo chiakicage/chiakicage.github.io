@@ -2,12 +2,7 @@
 // var calc = require('./calc')
 let exbuffer;
 let expos;
-function init(expr) {
-    exbuffer = expr, expos = 0;
-}
-function reset() {
-    expos = 0;
-}
+
 function nxtChar() {
     if (expos >= exbuffer.length)
         return undefined;
@@ -61,6 +56,13 @@ function getLexeme() {
     let ret = nxtLexeme();
     buffer = '';
     return ret;
+}
+
+function init(expr) {
+    exbuffer = expr, expos = 0, buffer = '';
+}
+function reset() {
+    expos = 0, buffer = '';
 }
 
 let func = {
