@@ -76,9 +76,9 @@ const TIME = 1;
 const BLOCK = 1;
 
 function Graphing(v, p) {
-    setTimeout(() => {
+    // setTimeout(() => {
         Graph(v, p);
-    }, TIME);    
+    // }, TIME);    
 }
 
 function Graph(value, pixiv) {
