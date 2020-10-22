@@ -1,7 +1,16 @@
 
 
+function calculate(value) {
+    X = value[0], Y = value[1];
+    reset();
+    let ret = Expression();
+    if (nxtLexeme()) throw 'Illegal Expression!';
+    return ret;
+}
 
 function evaluate(value) {
+    return calculate(value);
+    // return Equal(value[0], value[1]);
     // if (global_tag) {
     //     console.log(value[0].toString());
     //     console.log(value[1].toString());
@@ -12,18 +21,18 @@ function evaluate(value) {
     // }
     // console.log(value);
     // return Equal(Abs(Sin(Sub(Sqr(value[0]), Sqr(value[1])))), Add(Sin(Add(value[0], value[1])), Cos(Mul(value[0], value[1]))));
-    return Equal(Sin(Add(Sin(value[0]), Cos(value[1]))), Cos(Add(Sin(Mul(value[0], value[1])), Cos(value[0]))));
+    // return Equal(Sin(Add(Sin(value[0]), Cos(value[1]))), Cos(Add(Sin(Mul(value[0], value[1])), Cos(value[0]))));
     // return Equal(Max(Abs(value[0]), Sqr(value[0])), value[1]);
     // return Equal(Sin(Sqr(value[0]), Sqr(value[1])), Cos(Mul(value[0], value[1])));
     // return Equal(Exp(Add(Sin(value[0]), Cos(value[1]))), Sin(Exp(Add(value[0], value[1]))));
     // return Greateq(Sin(value[0]), value[1]);
     // return Equal(Sqr(Sub(value[0], number(3))), value[1]);
     // return Equal(Add(value[1], number(4)), Mul(number(1), Mul(Sub(value[0], number(4)), value[0])));
-    return Greateq(
-        Mul(
-            Sub(value[1], number(-5)), 
-            Cos(Mul(number(4), Sqrt(Add(Sqr(Sub(value[0], number(4))), Sqr(value[1])))))),
-        Mul(value[0], Sin(Mul(number(2), Sqrt(Add(Sqr(value[0]), Sqr(value[1])))))));
+    // return Greateq(
+    //     Mul(
+    //         Sub(value[1], number(-5)), 
+    //         Cos(Mul(number(4), Sqrt(Add(Sqr(Sub(value[0], number(4))), Sqr(value[1])))))),
+    //     Mul(value[0], Sin(Mul(number(2), Sqrt(Add(Sqr(value[0]), Sqr(value[1])))))));
 
     return Equal(
         Sub(
@@ -36,7 +45,7 @@ function evaluate(value) {
         number(50));
 }
 
-let canvas = document.getElementById('drawer');
+let canvas = document.getElementById('drawer1');
 let ctx = canvas.getContext('2d');
 
 function paintRed(rec) {
@@ -72,13 +81,13 @@ function paintWhite(rec) {
     );
 }
 
-const TIME = 1;
+const TIME = 0;
 const BLOCK = 1;
 
 function Graphing(v, p) {
-    // setTimeout(() => {
+    setTimeout(() => {
         Graph(v, p);
-    // }, TIME);    
+    }, TIME);    
 }
 
 function Graph(value, pixiv) {
@@ -142,6 +151,7 @@ function Graph(value, pixiv) {
     ];
 
     let tmp = evaluate(v1);
+    // console.log(tmp);
     if (math.deepEqual(tmp, TT)) paintBlack(p1);
     else if (math.deepEqual(tmp, FF)) paintWhite(p1);
     else Graphing(v1, p1);
@@ -163,15 +173,5 @@ function Graph(value, pixiv) {
     else Graphing(v4, p4);
 
 }
-value = [
-    [trans(-10), trans(10)], [trans(-10), trans(10)]
-];
-pixiv = [[0, 511], [0, 511]];
 
-paintRed(pixiv);
-Graph(value, pixiv);
 
-document.onmousedown = (e) => {
-    e = e || window.event;
-    console.log(e.clientX - canvas.offsetLeft - 1, e.clientY - canvas.offsetTop - 1);
-}

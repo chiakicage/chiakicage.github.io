@@ -12,6 +12,7 @@ const PI = trans("3.141592653589793238462643383279502884197169399375105820974944
 const ONE = trans(1);
 const NEG = trans(-1);
 const ZERO = trans(0);
+const E = trans(math.e);
 let global_tag = false;
 // math.config({
 //     number: 'BigNumber',
@@ -55,6 +56,10 @@ function Mul(x, y) {
     ];
 }
 
+function Neg(x) {
+    return [neg(x[0]), neg(x[1])];
+}
+
 function number(x) {
     return [trans(x), trans(x)];
 }
@@ -86,6 +91,13 @@ function Sqr(x) {
         math.min(mul(x[0], x[0]), mul(x[1], x[1])),
         math.max(mul(x[0], x[0]), mul(x[1], x[1]))
     ];
+}
+
+function Pow(x, a = number(math.e)) {
+    // if (math.smallerEq(a[0], ZERO) ) throw 'Bad Auguments!';
+    // console.log(math.pow(a[0], x[0]), math.pow(a[1], x[1]));
+    let ret = [math.pow(a[0], x[0]), math.pow(a[1], x[1])];
+    return [math.min(ret), math.max(ret)];
 }
 
 function Sin(x) {
@@ -142,9 +154,9 @@ function Min(x, y) {
 function Tan(x) {
     return Div(Sin(x), Cos(x));
 }
-function Exp(x) {
-    return [math.exp(x[0]), math.exp(x[1])];
-}
+// function Exp(x) {
+//     return [math.exp(x[0]), math.exp(x[1])];
+// }
 function Abs(x) {
     if (Contain(x, number(0))) 
         return [ZERO, math.max(math.abs(x[0]), math.abs(x[1]))];
@@ -183,6 +195,14 @@ function Equal(x, y) {
     else return FT;
 }
 
+let X, Y;
 
-
-
+// module.exports = {
+//     trans, Add, Sub,
+//     Mul, number, Contain,
+//     Inverse, Div, Sqrt,
+//     Sqr, Sin, Cos, Max, 
+//     Min, Tan, Exp, Abs, 
+//     Greateq, Lesseq, Equal,
+//     And, Or, X, Y
+// };
