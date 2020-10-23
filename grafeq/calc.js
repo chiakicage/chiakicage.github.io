@@ -4,7 +4,7 @@ const FF = [false, false];
 
 
 function trans(x) {
-    return Number(x);
+    return math.bignumber(x);
 }
 const Eps = number(1e-50);
 const TAU = trans("6.283185307179586476925286766559005768394338798750211641949889184615632812572417997256069650684234136");
