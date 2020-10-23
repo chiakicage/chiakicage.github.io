@@ -81,6 +81,13 @@ function Unit0() {
     let ss = getLexeme();
     // console.log(ss);
     if (charType(ss[0]) === obj_type.DIGHT) {
+        if (nxtLexeme() === '.') {
+            match('.'), ss += '.';
+            if (charType(nxtLexeme()[0]) !== obj_type.DIGHT) {
+                throw 'Illegal Number!';
+            }
+            ss += getLexeme();
+        }
         return number(trans(ss));
     } else if (charType(ss[0]) === obj_type.ALPHA) {
         if (ss === 'x') return X;
@@ -156,7 +163,8 @@ function Unit4() {
 
 function Expression() {
     let ret = Unit4(), op = nxtLexeme();
-    if (op === '=' || op === '<' || op === '<' || op === '<=' || op === '>=') {
+    // console.log(op);
+    if (op === '=' || op === '<' || op === '>' || op === '<=' || op === '>=') {
         if (op === '=') {
             getLexeme();
             ret = Equal(ret, Unit4());

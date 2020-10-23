@@ -13,10 +13,27 @@ pixiv = [[0, 511], [0, 511]];
 
 let input = document.querySelector('#formula');
 
+function transExpr(s) {
+    let ret = '';
+    for (let c of s) {
+        if (c === '=') ret += '==';
+        else ret += c;
+    }
+    return ret;
+}
+
 input.onkeydown = (e) => {
     if (e.keyCode === 13) {
         init(input.value);
-        // console.log(input.value);
+        console.log(input.value);
+
+        katex.render(
+            math.parse(transExpr(input.value)).toTex(), 
+            document.getElementById("katex"),
+            {
+                displayMode : true,
+                
+            });
         try {
             paintRed(pixiv);
             Graph(value, pixiv);

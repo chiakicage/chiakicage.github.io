@@ -4,6 +4,11 @@
 <head>
     <title> GrafEq Online test</title>
     <script src="./math.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.css"
+        integrity="sha384-qCEsSYDSH0x5I45nNW4oXemORUZnYFtPy/FqB/OjqxabTMW5HVaaH9USK4fN3goV" crossorigin="anonymous">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.js"
+        integrity="sha384-YFVvRUwgqxkAVN9bmAVLsKilmOKfQLyUx0ZlmDNs0aBUTsvMLnRxE3Km0NrZa0i9"
+        crossorigin="anonymous"></script>
     <style>
         /* body {
                 background-color: blue;
@@ -26,13 +31,26 @@
             left: 10%;
             right: 10%;
         }
+        #katex {
+            width: 500px;
+            height: 50px;
+            margin: 0 auto;
+            text-align: center;
+            position: absolute;
+            left: 10%;
+            right: 10%;
+            top: 9%;
+            /* border: 1px solid; */
+        }
+        .katex { font-size: 1.8em; }
     </style>
 </head>
 
 <body>
     <canvas id="drawer1" width="512" height="512"></canvas>
     <!-- <canvas id="drawer2" width="512" height="512"></canvas> -->
-    <input type="text" id="formula">
+    <input type="text" id="formula" placeholder="put your expression here.">
+    <div id="katex"></div>
     <script src="./calc.js"></script>
     <script src="./parser.js"></script>
     <script src="./graph.js"></script>
