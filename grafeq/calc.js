@@ -4,7 +4,7 @@ const FF = [false, false];
 
 
 function trans(x) {
-    return math.bignumber(x);
+    return Number(x);
 }
 const Eps = number(1e-50);
 const TAU = trans("6.283185307179586476925286766559005768394338798750211641949889184615632812572417997256069650684234136");
@@ -96,7 +96,10 @@ function Sqr(x) {
 function Pow(x, a = number(math.e)) {
     // if (math.smallerEq(a[0], ZERO) ) throw 'Bad Auguments!';
     // console.log(math.pow(a[0], x[0]), math.pow(a[1], x[1]));
+    // console.log(a);
     let ret = [math.pow(a[0], x[0]), math.pow(a[1], x[1])];
+    if (ret[0].re) ret[0] = trans(ret[0].re);
+    if (ret[1].re) ret[1] = trans(ret[1].re);
     return [math.min(ret), math.max(ret)];
 }
 
