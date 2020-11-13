@@ -146,6 +146,10 @@ function Cos(x) {
     return ret;
 }
 
+function Arctan(x) {
+    return [math.atan(x[0]), math.atan(x[1])];
+}
+
 function Max(x, y) {
     return [math.max(x[0], y[0]), math.max(x[1], y[1])];
 }

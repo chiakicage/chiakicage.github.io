@@ -69,7 +69,8 @@ let func = {
     'sin' : Sin, 
     'cos' : Cos,
     'abs' : Abs,
-    'sqrt' : Sqrt
+    'sqrt' : Sqrt,
+    'atan' : Arctan
 };
 
 function match(ss) {
